@@ -57,10 +57,10 @@ app.get("/game/:id", (request, response) => {
 });
 
 //Post data
-app.post("/game", (request, response)=>{
+app.post("/game", (request, response) => {
   // Acima temos a definição de um método post que cria/salva
   // um game no banco de dados
-  var {title, price, year} = request.body;
+  var { title, price, year } = request.body;
   // O método push tem a função de adicionar dados dentro de um array
   DB.games.push({
     id: 33,
@@ -69,6 +69,28 @@ app.post("/game", (request, response)=>{
     year
   });
   response.sendStatus(200);
+});
+
+app.delete("/game/:id", (request, response) => {
+  // Esta rota deleta um game com base no seu id
+  if (isNaN(request.params.id)) {
+    response.sendStatus(400);
+  } else {
+    var id = parseInt(request.params.id);
+    var index = DB.games.findIndex(g => g.id == id); //Procura com base no index
+    
+    if (index == - 1) { 
+    // Validação para caso tente deletar um elemento que não existe
+    response.sendStatus(404);
+    } else {
+      // Se for maior que um então de fato pode deletar o elemento
+
+      DB.games.splice(index,1);
+      //Aqui passamos o elemento que queremos deletar de acordo com o index 
+      // e que queremos deletar um elemento a partir do index.
+      response.sendStatus(200);
+    }
+  }
 });
 
 app.listen(3002);

@@ -200,5 +200,38 @@ app.get("/games", (request, response) => {
   });
   ```
 
-  
+- Deletando dados na API:
+  Aqui está a primeira parte desse código de deleção onde executamos a validação dos dados do mesmo modo que o verbo get.
+  Em seguida ele faz a busca de acordo com o index do elemento.
+
+  ```js
+  app.delete("/game/:id", (request, response) => {
+    // Esta rota deleta um game com base no seu id
+    if (isNaN(request.params.id)) {
+      response.sendStatus(400);
+    } else {
+      var id = parseInt(request.params.id);
+      var index = DB.games.findIndex(g => g.id == id); //Procura com base no index
+      
+  ```
+
+  Abaixo temos a continuação desse código:
+
+  Verificamos  se existe algum elemento de acordo com o index, caso seja menos um então o dado não existe e retorna o status code 404.
+
+  Senão, prosseguimos com a deleção do dado. 
+
+```js
+if (index == - 1) { 
+    // Validação para caso tente deletar um elemento que não existe
+    response.sendStatus(404);
+    } else {
+      // Se for maior que 1 então de fato pode deletar o elemento
+
+      DB.games.splice(index,1);
+      //Aqui passamos o elemento que queremos deletar de acordo com o index 
+      // e que queremos deletar um elemento a partir do index.
+      response.sendStatus(200);
+    }
+```
 
