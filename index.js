@@ -54,6 +54,21 @@ app.get("/game/:id", (request, response) => {
       response.sendStatus(404);
     }
   }
-})
+});
 
-app.listen(3002)
+//Post data
+app.post("/game", (request, response)=>{
+  // Acima temos a definição de um método post que cria/salva
+  // um game no banco de dados
+  var {title, price, year} = request.body;
+  // O método push tem a função de adicionar dados dentro de um array
+  DB.games.push({
+    id: 33,
+    title,
+    price,
+    year
+  });
+  response.sendStatus(200);
+});
+
+app.listen(3002);

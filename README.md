@@ -175,4 +175,30 @@ app.get("/games", (request, response) => {
     }
   ```
 
+- Cadastro de dados na API:
+  Foi usado o verbo post para inserção de dados no banco, logo em seguida definimos os dados que seriam adicionados através da requisição pelo body.
+
+  Sobre o método *push*, deixamos um comentário acerca dele, já que o nosso banco de dados é apenas para exemplificação no projeto. 
+
+  > Obs: Não implementamos as validações nessa etapa para uma melhor exemplificação, mas deixamos aqui um desafio! Por que não tente implementar a validação dos dados? Aposto que você consegue! 😄
+
+  ```js
+  app.post("/game", (request, response)=>{
+    // Acima temos a definição de um método post que cria/salva
+    // um game no banco de dados
+      
+    var {title, price, year} = request.body;
+      
+    // O método push tem a função de adicionar dados dentro de um array
+    DB.games.push({
+      id: 33,
+      title,
+      price,
+      year
+    });
+    response.sendStatus(200);
+  });
+  ```
+
   
+
