@@ -71,5 +71,31 @@ PUT = http://meusite.com/editar/clientes/2
 
 
 
+# ProjectAPI_NodeJS
 
+Iniciamos com o a criação de um novo projeto node com :
+
+```
+npm init
+```
+
+Depois instalamos o *express* para usar duas bibliotecas:
+
+```
+npm install express --save
+```
+
+Também foi instalado o body-parser: 
+
+```
+npm install body-parser --save
+```
+
+Configuração no index.js:
+
+<img src="C:\Users\Dubst\Documents\Portfolio Organize\ProjectAPI_NodeJS\img\Configuration.png" style="zoom:50%;" />
+
+Configuração das rotas:
+
+<img src="C:\Users\Dubst\Documents\Portfolio Organize\ProjectAPI_NodeJS\img\Routes.png" style="zoom:50%;" />
 
