@@ -90,16 +90,13 @@ Também foi instalado o body-parser:
 ```
 npm install body-parser --save
 ```
-<div align="center">
   
 Configuração no index.js:
-  
-<img src= "https://user-images.githubusercontent.com/28829983/156929108-45ea6561-2c42-4217-b145- 86186a487655.png" style="zoom:100px;" />
-  
-</div>
+
+<img src="https://user-images.githubusercontent.com/28829983/156929853-e65a7d7a-52ee-432f-8425-f6b3ee4e99ba.png" width="350px" />
 
 
 Configuração das rotas:
 
-<img src="C:\Users\Dubst\Documents\Portfolio Organize\ProjectAPI_NodeJS\img\Routes.png" style="zoom:50%;" />
+<img src="https://user-images.githubusercontent.com/28829983/156930130-d2370af3-ac1d-4cd4-96af-b6e4be217b5c.png" width="350px" />
 
