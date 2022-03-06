@@ -93,9 +93,22 @@ npm install body-parser --save
 
 Configuração no index.js:
 
-<img src="C:\Users\Dubst\Documents\Portfolio Organize\ProjectAPI_NodeJS\img\Configuration.png" style="zoom:50%;" />
+```js
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+```
 
 Configuração das rotas:
 
-<img src="C:\Users\Dubst\Documents\Portfolio Organize\ProjectAPI_NodeJS\img\Routes.png" style="zoom:50%;" />
+```js
+//Rotas da API
+app.get("/games", (request, response) => {
+  response.statusCode = 200; // Uso do status code para o client
+  response.json(DB.games); // Retorna todos os games em um formato JSON
+});
+```
 
