@@ -78,17 +78,43 @@ app.delete("/game/:id", (request, response) => {
   } else {
     var id = parseInt(request.params.id);
     var index = DB.games.findIndex(g => g.id == id); //Procura com base no index
-    
-    if (index == - 1) { 
-    // Validação para caso tente deletar um elemento que não existe
-    response.sendStatus(404);
+
+    if (index == - 1) {
+      // Validação para caso tente deletar um elemento que não existe
+      response.sendStatus(404);
     } else {
       // Se for maior que um então de fato pode deletar o elemento
 
-      DB.games.splice(index,1);
+      DB.games.splice(index, 1);
       //Aqui passamos o elemento que queremos deletar de acordo com o index 
       // e que queremos deletar um elemento a partir do index.
       response.sendStatus(200);
+    }
+  }
+});
+
+app.put("/game/:id", (request, response) => {
+
+  if (isNaN(request.params.id)) {
+    response.sendStatus(400);
+  } else {
+    var id = parseInt(request.params.id);
+    var game = DB.games.find(g => g.id == id);
+    if (game != undefined) {
+      var { title, price, year } = request.body;
+      //Verificação para saber se o usuário quer atualizar apenas um atributo
+      if (title != undefined) {
+        game.title = title;
+      }
+      if (price != undefined) {
+        game.price = price;
+      }
+      if (year != undefined) {
+        game.year = year;
+      }
+      response.sendStatus(200);
+    } else {
+      response.sendStatus(404);
     }
   }
 });

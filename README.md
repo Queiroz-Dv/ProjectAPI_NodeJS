@@ -134,7 +134,7 @@ app.use(bodyParser.json());
 
 ##### ✍ Configuração das rotas:
 
-- Listagem de todos os elementos:
+- Listagem de todos os dados:
 
 ```js
 //Rotas da API
@@ -234,4 +234,37 @@ if (index == - 1) {
       response.sendStatus(200);
     }
 ```
+
+- Editando um dado:
+  Colocamos apenas essa parte para exemplificar o que foi feito no código de edição, já que ele usa a mesma base do "app.get(/game/:id". Todos os if's de validação são para saber se o usuário editou ou quer editar apenas um atributo do elemento, depois disso enviamos a resposta com o código 200. 
+
+  > Obs: Outras validações não foram implementadas por questões didáticas e de fácil assimilação.
+
+  ```js
+      var id = parseInt(request.params.id);
+      var game = DB.games.find(g => g.id == id);
+      if (game != undefined) {
+        var { title, price, year } = request.body;
+        //Verificação para saber se o usuário quer atualizar apenas um atributo//
+        if (title != undefined) {
+          game.title = title;
+        }
+        if (price != undefined) {
+          game.price = price;
+        }
+        if (year != undefined) {
+          game.year = year;
+        }
+        response.sendStatus(200);
+  ```
+
+  
+
+### 🎉Dê um Up!
+
+Com isso finalizamos a primeira parte desse resumo! 😍
+
+Deixe sua star para mais conteúdos! 
+
+Produzido por: [https://github.com/Queiroz-Dv]()
 
