@@ -1,12 +1,12 @@
-# O que é HTTP?
+# 🔮 Um resumo sobre o que é HTTP?
 
 ## O que move a Web
 
 A web trabalha com requisições _HTTP_ que é um dos protocolos mais usados na atualidade. A comunicação só é possível através das requisições e respostas entre cliente e servidor.
 
-## Verbos HTTP
+## 🎯 Introdução aos verbos HTTP
 
-Também são chamados de métodos e ações HTTP. Os verbos HTTP são formas de dizer como você deseja que a requisição seja realizada.
+Também são chamados de métodos e ações HTTP. Os verbos HTTP são formas de dizer como você deseja que a requisição seja realizada. Abaixo temos uma tabela sobre os principais verbos:
 
 | Verbo  | Objetivo                        | Usos         | Requisição Múltipla | Cache |
 | ------ | ------------------------------- | ------------ | ------------------- | ----- |
@@ -18,7 +18,7 @@ Também são chamados de métodos e ações HTTP. Os verbos HTTP são formas de 
 
 
 
-## Status Code
+##  🧐 O que é *Status Code*?
 
 É importante que tenha um "response" com um código de status. O status code é uma forma de dizer, para quem fez uma  requisição para  nossa API, o que aconteceu quando o usuário fez a "request"  .
 
@@ -32,25 +32,49 @@ Também são chamados de métodos e ações HTTP. Os verbos HTTP são formas de 
 
 
 
-## Webservices
+## 🌏 O mundo dos Webservices
 
 Uma API (*Application Programming Interface*)é um software ou uma biblioteca que serve para permitir que algum elemento se comunique com outro elemento. As APIs são uma interface de comunicação. As APIs que funcionam na web são conhecidas como **Webservices**. 
 
 
 
-## Rest
+## 🥱 O que resta de Rest?
 
-Conhecido como padrão de desenvolvimento de webservices.  Neste caso, trata-se de um padrão arquitetural. 
+Conhecido como padrão de desenvolvimento de webservices.  Neste caso, trata-se de um padrão arquitetural. Antes de tudo é importante que você saiba as regras do rest: 
 
 ##### As cinco regras do Rest:
 
-- Cliente-servidor: O Rest *não pode ser cliente e servidor* ao mesmo tempo. Para esse padrão ele precisa ser apenas **servidor**.
-- Stateless: Não devemos guardar o estado do cliente. Nenhuma informação deve ser salva na requisição, apenas responder e retornar ao cliente.
-- Cache: Para uma API ser REST ela tem que ter a possibilidade de permitir cache. 
-- Trabalho com camadas: Não importa o que há entre o cliente e API, ela irá funcionar singularmente independente se houver um middleware, proxy ou firewall. 
-- Interface uniforme e direta: Interface dentro da web pode ser comparado analogamente a nossas rotas, que são chamadas de *end-points*.
+###### 👥Cliente-servidor
 
-**Interface não uniforme**
+> O Rest *não pode ser cliente e servidor* ao mesmo tempo. Para esse padrão ele precisa ser apenas **servidor**.
+
+
+
+###### 🔄Stateless
+
+> Não devemos guardar o estado do cliente. Nenhuma informação deve ser salva na requisição, apenas responder e retornar ao cliente.
+
+
+
+###### 🔣Cache
+
+> Para uma API ser REST ela tem que ter a possibilidade de permitir cache. 
+
+
+
+###### 🎨 Trabalho com camadas
+
+>  Não importa o que há entre o cliente e a API, ela irá funcionar singularmente independente se houver um middleware, proxy ou firewall. 
+
+
+
+###### 🔲Interface uniforme e direta 
+
+> Interface dentro da web pode ser comparado analogamente a nossas rotas, que são chamadas de *end-points*. Elas precisam ser concisas e uniformes.
+
+
+
+❌ **Interface não uniforme**
 
 ```http
 http://meusite.com/getClientes/todos
@@ -60,7 +84,7 @@ http://meusite.com/editar/clientes/peloId/2
 
 
 
-**Interface uniforme**
+✅ **Interface uniforme**
 
 ```http
 GET = http://meusite.com/clientes
@@ -71,7 +95,9 @@ PUT = http://meusite.com/editar/clientes/2
 
 
 
-# ProjectAPI_NodeJS
+# 😍 ProjectAPI_NodeJS
+
+Este é um projeto para exemplificar os conceitos que foram abordados, siga o percurso ou tente você mesmo! 
 
 Iniciamos com o a criação de um novo projeto node com :
 
@@ -90,8 +116,10 @@ Também foi instalado o body-parser:
 ```
 npm install body-parser --save
 ```
-  
-Configuração no index.js:
+
+
+
+##### Configuração no index.js:
 
 ```js
 const express = require("express");
@@ -102,7 +130,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 ```
 
-Configuração das rotas:
+
+
+##### ✍ Configuração das rotas:
+
+- Listagem de todos os elementos:
 
 ```js
 //Rotas da API
@@ -111,3 +143,36 @@ app.get("/games", (request, response) => {
   response.json(DB.games); // Retorna todos os games em um formato JSON
 });
 ```
+
+- Listagem única com validação:
+
+  Recebemos como **parâmetro o ID** do game que está sendo requisitado, em seguida, verifica-se **o id é um número ou não** com o recurso *isNaN*, que de forma simplificada irá avaliar se o id é numérico ou não.
+
+  ```js
+  app.get("/game/:id", (request, response) => {
+    // Esta rota recebe como parâmetro o id de um game no banco de dados
+  
+    if (isNaN(request.params.id)) {
+      //Validação para verificar se o id é um número.
+      response.sendStatus(400);
+  ```
+
+  Se o id  não for numérico a resposta a ser enviada é o código 400.
+
+  Logo abaixo seguimos com a conversão de string para int, e em seguida faz se à busca pelo game no banco de dados. Já no bloco de verificação do if avaliamos se o game é diferente de indefinido, se for  verdadeiro prosseguimos com o status de sucesso com o retorno dos dados em json, senão o retorno seguirá com o código 404.
+
+  ```js
+  else {
+      var id = parseInt(request.params.id); // Conversão de string para int
+      var game = DB.games.find(g => g.id == id);
+  
+      if (game != undefined) { //Se game for diferente de indefinido...
+        response.statusCode = 200;
+        response.json(game);
+      }  else {
+        response.sendStatus(404);
+      }
+    }
+  ```
+
+  
