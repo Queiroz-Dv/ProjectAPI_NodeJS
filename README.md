@@ -93,7 +93,6 @@ npm install body-parser --save
   
 Configuração no index.js:
 
-<<<<<<< HEAD
 ```js
 const express = require("express");
 const app = express();
@@ -112,12 +111,3 @@ app.get("/games", (request, response) => {
   response.json(DB.games); // Retorna todos os games em um formato JSON
 });
 ```
-=======
-<img src="https://user-images.githubusercontent.com/28829983/156929853-e65a7d7a-52ee-432f-8425-f6b3ee4e99ba.png" width="350px" />
-
-
-Configuração das rotas:
-
-<img src="https://user-images.githubusercontent.com/28829983/156930130-d2370af3-ac1d-4cd4-96af-b6e4be217b5c.png" width="350px" />
->>>>>>> 76368f0a81cc0134fa4307c5cc7708b6d6f899ec
-
