@@ -263,8 +263,7 @@ if (index == - 1) {
 ### 🎉Dê um Up!
 
 Com isso finalizamos a primeira parte desse resumo! 😍
+Segunda parte do resumo dispoível na pasta "Consumo de API"!
 
-Deixe sua star para mais conteúdos! 
-
-Produzido por: [https://github.com/Queiroz-Dv]()
+Deixe sua star para mais conteúdos!
 
