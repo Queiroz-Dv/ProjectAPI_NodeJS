@@ -192,7 +192,41 @@ Para finalizar o nosso sistema apresentamos a implementação de edição, a pri
 <input type="text" name="titleEdit" id="titleEdit" placeholder="Título"><br>
   <input type="number" name="yearEdit" id="yearEdit" placeholder="Ano"><br>
   <input type="number" name="priceEdit" id="priceEdit" placeholder="Preço"><br>
-  <button type="button" onclick="createGame()">Editar</button>
+  <button type="button" onclick="updateGame()">Editar</button>
 ```
 
-Em construção...
+Vale dizer que criamos uma função que usa o data attribute para carregar e pegar os elementos, e depois disso modificá-los através do updateGame. Abaixo está o código implementado.
+
+```js
+ function loadForm(listItem) {
+    var id = listItem.getAttribute("data-id");
+    var title = listItem.getAttribute("data-title");
+    var year = listItem.getAttribute("data-year");
+    var price = listItem.getAttribute("data-price");
+
+    document.getElementById("idEdit").value = id;
+    document.getElementById("titleEdit").value = title;
+    document.getElementById("yearEdit").value = year;
+    document.getElementById("priceEdit").value = price;
+  }
+```
+
+Aqui está a função *updateGame* que tem o papel de atualizar os campos do nosso objeto.
+
+```js
+  function updateGame() {
+    var idInput = document.getElementById("idEdit")
+    var titleInput = document.getElementById("titleEdit");
+    var yearInput = document.getElementById("yearEdit");
+    var priceInput = document.getElementById("priceEdit");
+
+    var game = { // JSON para coletar os dados
+      title: titleInput.value,
+      year: yearInput.value,
+      price: priceInput.value
+    }
+
+```
+
+E com isso chegamos ao final do nosso projeto! Com um CRUD implementado do início ao fim e também consumindo nossa API através do Axios. 
+
