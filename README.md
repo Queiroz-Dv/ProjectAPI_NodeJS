@@ -263,7 +263,8 @@ if (index == - 1) {
 ### 🎉Dê um Up!
 
 Com isso finalizamos a primeira parte desse resumo! 😍
-Segunda parte do resumo dispoível na pasta "Consumo de API"!
+
+Segunda parte do resumo: [Resumo parte 2](https://github.com/Queiroz-Dv/ProjectAPI_NodeJS/blob/master/Consumo%20de%20Api/README.md)
 
 Deixe sua star para mais conteúdos!
 
